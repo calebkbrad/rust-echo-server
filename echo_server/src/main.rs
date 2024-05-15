@@ -2,9 +2,13 @@ use std::io::{BufRead, BufReader, Write};
 use std::net::{TcpListener, TcpStream};
 
 fn main() {
-    let listener = TcpListener::bind("127.0.0.1:8080").expect("Error in creating listener");
+    let ip = "127.0.0.1";
+    let port = 8080;
+    let address = format!("{ip}:{}", port.to_string());
 
-    println!("Listening on port 8080");
+    let listener = TcpListener::bind(address).expect("Error in creating listener");
+
+    println!("Listening on port {port}");
 
     for connection in listener.incoming() {
         let connection = connection.unwrap();
