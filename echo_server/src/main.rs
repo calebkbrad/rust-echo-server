@@ -4,8 +4,11 @@ use std::net::{TcpListener, TcpStream};
 fn main() {
     let listener = TcpListener::bind("127.0.0.1:8080").expect("Error in creating listener");
 
+    println!("Listening on port 8080");
+
     for connection in listener.incoming() {
-        
+        let connection = connection.unwrap();
+        echo_response(connection);
     }
 }
 
