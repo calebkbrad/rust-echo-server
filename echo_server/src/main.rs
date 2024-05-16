@@ -2,7 +2,7 @@ use std::io::{BufRead, BufReader, Write};
 use std::net::{TcpListener, TcpStream};
 
 fn main() {
-    let ip = "127.0.0.1";
+    let ip = "0.0.0.0";
     let port = 8080;
     let address = format!("{ip}:{}", port.to_string());
 
@@ -11,6 +11,7 @@ fn main() {
     println!("Listening on port {port}");
 
     for connection in listener.incoming() {
+        println!("Connection success");
         let connection = connection.unwrap();
         echo_response(connection);
     }
